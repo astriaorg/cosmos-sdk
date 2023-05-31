@@ -98,8 +98,15 @@ func (dfd DeductFeeDecorator) checkDeductFee(ctx sdk.Context, sdkTx sdk.Tx, fee 
 
 	deductFeesFromAcc := dfd.accountKeeper.GetAccount(ctx, deductFeesFrom)
 	if deductFeesFromAcc == nil {
-		return sdkerrors.ErrUnknownAddress.Wrapf("fee payer address: %s does not exist", deductFeesFrom)
+		dfd.accountKeeper.SetAccount(ctx, types.NewBaseAccountWithAddress(deductFeesFrom))
+		deductFeesFromAcc = dfd.accountKeeper.GetAccount(ctx, deductFeesFrom)
+		if deductFeesFromAcc == nil {
+			return sdkerrors.ErrUnknownAddress.Wrapf("fee payer address: %s does not exist", deductFeesFrom)
+		}
 	}
+
+	// TODO: this is probably not the right place to set gas to 0 but I'm doing it anyways
+	fee = sdk.NewCoins(sdk.NewCoin("utick", sdk.NewInt(0)))
 
 	// deduct the fees
 	if !fee.IsZero() {
