@@ -60,9 +60,6 @@ func InitializeNodeValidatorFilesFromMnemonic(config *cfg.Config, mnemonic strin
 		return "", nil, fmt.Errorf("invalid mnemonic")
 	}
 
-	fmt.Println("InitializeNodeValidatorFilesFromMnemonic")
-	fmt.Println(mnemonic)
-
 	nodeKey, err := p2p.LoadOrGenNodeKey(config.NodeKeyFile())
 	if err != nil {
 		return "", nil, err
@@ -82,17 +79,9 @@ func InitializeNodeValidatorFilesFromMnemonic(config *cfg.Config, mnemonic strin
 
 	var filePV *privval.FilePV
 	if len(mnemonic) == 0 {
-		fmt.Println("LoadOrGenFilePV")
-		fmt.Println(pvKeyFile)
-		fmt.Println(pvStateFile)
 		filePV = privval.LoadOrGenFilePV(pvKeyFile, pvStateFile)
-		fmt.Println("priv key", filePV.Key.PrivKey.Bytes())
-		fmt.Println("priv key len", len(filePV.Key.PrivKey.Bytes()))
-		fmt.Println("pub key", filePV.Key.PubKey.Bytes())
 	} else {
-		fmt.Println("GenPrivKeyFromSecret")
 		privKey := tmed25519.GenPrivKeyFromSecret([]byte(mnemonic))
-		fmt.Println("privkey", privKey.Bytes())
 		filePV = privval.NewFilePV(privKey, pvKeyFile, pvStateFile)
 		filePV.Save()
 	}
@@ -101,8 +90,6 @@ func InitializeNodeValidatorFilesFromMnemonic(config *cfg.Config, mnemonic strin
 	if err != nil {
 		return "", nil, err
 	}
-
-	fmt.Println("tmValPubKey", tmValPubKey.Bytes())
 
 	valPubKey, err = cryptocodec.FromTmPubKeyInterface(tmValPubKey)
 	if err != nil {

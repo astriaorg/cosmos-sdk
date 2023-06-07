@@ -118,11 +118,6 @@ func runAddCmd(ctx client.Context, cmd *cobra.Command, args []string, inBuf *buf
 		return err
 	}
 
-	fmt.Println("runAddCmd")
-	fmt.Println(keyringAlgos)
-	fmt.Println(algoStr)
-	fmt.Println(algo)
-
 	if dryRun, _ := cmd.Flags().GetBool(flags.FlagDryRun); dryRun {
 		// use in memory keybase
 		kb = keyring.NewInMemory(ctx.Codec)
@@ -257,8 +252,6 @@ func runAddCmd(ctx client.Context, cmd *cobra.Command, args []string, inBuf *buf
 		}
 	}
 
-	fmt.Println(mnemonic)
-
 	// override bip39 passphrase
 	if interactive {
 		bip39Passphrase, err = input.GetString(
@@ -280,9 +273,6 @@ func runAddCmd(ctx client.Context, cmd *cobra.Command, args []string, inBuf *buf
 			}
 		}
 	}
-
-	fmt.Println(bip39Passphrase)
-	fmt.Println(hdPath)
 
 	k, err := kb.NewAccount(name, mnemonic, bip39Passphrase, hdPath, algo)
 	if err != nil {
