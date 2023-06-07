@@ -12,7 +12,7 @@ import (
 const (
 	DefaultMaxMemoCharacters      uint64 = 256
 	DefaultTxSigLimit             uint64 = 7
-	DefaultTxSizeCostPerByte      uint64 = 10
+	DefaultTxSizeCostPerByte      uint64 = 0
 	DefaultSigVerifyCostED25519   uint64 = 590
 	DefaultSigVerifyCostSecp256k1 uint64 = 1000
 )
@@ -140,14 +140,14 @@ func validateMaxMemoCharacters(i interface{}) error {
 }
 
 func validateTxSizeCostPerByte(i interface{}) error {
-	v, ok := i.(uint64)
-	if !ok {
-		return fmt.Errorf("invalid parameter type: %T", i)
-	}
+	// v, ok := i.(uint64)
+	// if !ok {
+	// 	return fmt.Errorf("invalid parameter type: %T", i)
+	// }
 
-	if v == 0 {
-		return fmt.Errorf("invalid tx size cost per byte: %d", v)
-	}
+	// if v == 0 {
+	// 	return fmt.Errorf("invalid tx size cost per byte: %d", v)
+	// }
 
 	return nil
 }
