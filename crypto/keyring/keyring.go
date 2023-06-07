@@ -539,11 +539,7 @@ func (ks keystore) NewAccount(name string, mnemonic string, bip39Passphrase stri
 		return nil, err
 	}
 
-	fmt.Println("derivedPriv", derivedPriv)
-
 	privKey := algo.Generate()(derivedPriv)
-
-	fmt.Println("privKey", privKey)
 
 	// check if the a key already exists with the same address and return an error
 	// if found
