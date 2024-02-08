@@ -40,10 +40,10 @@ import (
 	"github.com/cosmos/cosmos-sdk/version"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 
-	rollconf "github.com/rollkit/rollkit/config"
-	rollnode "github.com/rollkit/rollkit/node"
-	rollrpc "github.com/rollkit/rollkit/rpc"
-	rolltypes "github.com/rollkit/rollkit/types"
+	rollconf "github.com/astriaorg/rollkit/config"
+	rollnode "github.com/astriaorg/rollkit/node"
+	rollrpc "github.com/astriaorg/rollkit/rpc"
+	rolltypes "github.com/astriaorg/rollkit/types"
 )
 
 const (
