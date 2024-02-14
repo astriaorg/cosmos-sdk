@@ -15,7 +15,7 @@ require (
 	cosmossdk.io/store v1.0.0
 	cosmossdk.io/x/tx v0.12.0
 	github.com/99designs/keyring v1.2.1
-	github.com/astriaorg/rollkit v0.4.1-0.20240208184639-a248579cd1c9
+	github.com/astriaorg/rollkit v0.5.0-astria
 	github.com/bgentry/speakeasy v0.1.1-0.20220910012023-760eaf8b6816
 	github.com/bits-and-blooms/bitset v1.8.0
 	github.com/chzyer/readline v1.5.1
@@ -68,7 +68,7 @@ require (
 )
 
 require (
-	buf.build/gen/go/astria/astria/protocolbuffers/go v1.32.0-20240208041217-cec081a8099b.1 // indirect
+	buf.build/gen/go/astria/astria/protocolbuffers/go v1.32.0-20240208213846-0e715ec578d3.1 // indirect
 	buf.build/gen/go/astria/execution-apis/grpc/go v1.3.0-20240207231045-2f6384a93a8d.2 // indirect
 	buf.build/gen/go/astria/execution-apis/protocolbuffers/go v1.32.0-20240207231045-2f6384a93a8d.1 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
@@ -297,3 +297,5 @@ retract (
 	// do not use
 	v0.43.0
 )
+
+// replace github.com/astriaorg/rollkit => ../rollkit
