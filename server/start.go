@@ -12,8 +12,6 @@ import (
 	"github.com/cometbft/cometbft/abci/server"
 	cmtcmd "github.com/cometbft/cometbft/cmd/cometbft/commands"
 	cmtcfg "github.com/cometbft/cometbft/config"
-	"github.com/cometbft/cometbft/p2p"
-	pvm "github.com/cometbft/cometbft/privval"
 	"github.com/cometbft/cometbft/proxy"
 	rpchttp "github.com/cometbft/cometbft/rpc/client/http"
 	cmttypes "github.com/cometbft/cometbft/types"
@@ -43,7 +41,6 @@ import (
 	rollconf "github.com/astriaorg/rollkit/config"
 	rollnode "github.com/astriaorg/rollkit/node"
 	rollrpc "github.com/astriaorg/rollkit/rpc"
-	rolltypes "github.com/astriaorg/rollkit/types"
 )
 
 const (
@@ -397,25 +394,7 @@ func startCmtNode(
 	app types.Application,
 	svrCtx *Context,
 ) (server *rollrpc.Server, cleanupFn func(), err error) {
-	nodeKey, err := p2p.LoadOrGenNodeKey(cfg.NodeKeyFile())
-	if err != nil {
-		return nil, cleanupFn, err
-	}
-
-	svrCtx.Logger.Info("starting node with Rollkit in-process")
-
-	pval := pvm.LoadOrGenFilePV(cfg.PrivValidatorKeyFile(), cfg.PrivValidatorStateFile())
-
-	//keys in Rollkit format
-	p2pKey, err := rolltypes.GetNodeKey(nodeKey)
-	if err != nil {
-		return nil, cleanupFn, err
-	}
-
-	signingKey, err := rolltypes.GetNodeKey(&p2p.NodeKey{PrivKey: pval.Key.PrivKey})
-	if err != nil {
-		return nil, cleanupFn, err
-	}
+	svrCtx.Logger.Info("Starting node with Astria sequencer")
 
 	nodeConfig := rollconf.NodeConfig{}
 	err = nodeConfig.GetViperConfig(svrCtx.Viper)
@@ -437,8 +416,8 @@ func startCmtNode(
 	tmNode, err := rollnode.NewNode(
 		ctx,
 		nodeConfig,
-		p2pKey,
-		signingKey,
+		// p2pKey,
+		// signingKey,
 		proxy.NewLocalClientCreator(cmtApp),
 		genDoc,
 		rollnode.DefaultMetricsProvider(cfg.Instrumentation),
