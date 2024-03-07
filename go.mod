@@ -15,7 +15,7 @@ require (
 	cosmossdk.io/store v1.0.0
 	cosmossdk.io/x/tx v0.12.0
 	github.com/99designs/keyring v1.2.1
-	github.com/astriaorg/rollkit v0.5.0-astria
+	github.com/astriaorg/rollkit v0.6.0-alpha.1
 	github.com/bgentry/speakeasy v0.1.1-0.20220910012023-760eaf8b6816
 	github.com/bits-and-blooms/bitset v1.8.0
 	github.com/chzyer/readline v1.5.1
@@ -68,13 +68,13 @@ require (
 )
 
 require (
-	buf.build/gen/go/astria/astria/protocolbuffers/go v1.32.0-20240208213846-0e715ec578d3.1 // indirect
-	buf.build/gen/go/astria/execution-apis/grpc/go v1.3.0-20240207231045-2f6384a93a8d.2 // indirect
-	buf.build/gen/go/astria/execution-apis/protocolbuffers/go v1.32.0-20240207231045-2f6384a93a8d.1 // indirect
+	buf.build/gen/go/astria/astria/protocolbuffers/go v1.32.0-20240307175025-b24dec4bdce2.1 // indirect
+	buf.build/gen/go/astria/execution-apis/grpc/go v1.3.0-20240209225522-97e3bc68f856.2 // indirect
+	buf.build/gen/go/astria/execution-apis/protocolbuffers/go v1.32.0-20240209225522-97e3bc68f856.1 // indirect
 	filippo.io/edwards25519 v1.0.0 // indirect
 	github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 // indirect
 	github.com/DataDog/zstd v1.5.5 // indirect
-	github.com/astriaorg/go-sequencer-client v0.0.0-20231201013457-0df599de8e74 // indirect
+	github.com/astriaorg/go-sequencer-client v0.2.0-alpha.2 // indirect
 	github.com/benbjohnson/clock v1.3.5 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2 // indirect
